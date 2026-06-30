@@ -10,7 +10,7 @@ function utils.createstackfiles()
 	end
     if not isfolder("STACK/images") then
         makefolder("STACK/images");
-        writefile("STACK/images/stacklogo.png", game:HttpGet("https://github.com/decryp1/STACK/blob/main/images/stacklogo.png"));
+        writefile("STACK/images/stacklogo.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stacklogo.png"));
     end
 end
 
