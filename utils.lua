@@ -11,7 +11,20 @@ function utils.createstackfiles()
     if not isfolder("STACK/images") then
         makefolder("STACK/images");
         writefile("STACK/images/stacklogo.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stacklogo.png"));
+		writefile("STACK/images/stackA.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stackA.png"));
+		writefile("STACK/images/stackAcollapsed.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stackAcollapsed.png"));
     end
+end
+
+function utils.getobsidian()
+	local icon, iconholder
+	for i,v in game:WaitForChild("CoreGui"):GetDescendants() do
+		if v:IsA("ImageButton") and v.Image:lower():find("stack") then
+			icon = v;
+			iconholder = v.Parent;
+		end
+	end
+	return icon, iconholder;
 end
 
 function utils.addexecution()
