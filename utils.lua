@@ -10,10 +10,10 @@ function utils.createstackfiles()
 	end
     if not isfolder("STACK/images") then
         makefolder("STACK/images");
-        writefile("STACK/images/stacklogo.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stacklogo.png"));
-		writefile("STACK/images/stackA.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stackA.png"));
-		writefile("STACK/images/stackAcollapsed.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stackAcollapsed.png"));
-    end
+	end
+	writefile("STACK/images/stacklogo.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stacklogo.png"));
+	writefile("STACK/images/stackA.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stackA.png"));
+	writefile("STACK/images/stackAcollapsed.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stackAcollapsed.png"));
 end
 
 function utils.getobsidian()
