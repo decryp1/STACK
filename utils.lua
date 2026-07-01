@@ -11,10 +11,28 @@ function utils.createstackfiles()
     if not isfolder("STACK/images") then
         makefolder("STACK/images");
 	end
-	writefile("STACK/images/stacklogo.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stacklogo.png"));
-	writefile("STACK/images/stackA.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stackA.png"));
-	writefile("STACK/images/stackAcollapsed.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stackAcollapsed.png"));
+
 end
+
+function utils.ensureimages()
+    if not isfolder("STACK") or not isfolder("STACK/globals") or not isfolder("STACK/images") then
+        utils.createstackfiles()
+    end
+    if #listfiles("STACK/images") > 0 then
+        for i, v in listfiles("STACK/images") do
+            if not string.find(tostring(getcustomasset(v)), 'rbxasset') then
+                local name = v:match("([^/\\]+)$")
+                --print(v, name)
+                writefile(v, game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/", v))
+            end
+        end
+    else
+        writefile("STACK/images/stacklogo.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stacklogo.png"));
+        writefile("STACK/images/stackA.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stackA.png"));
+        writefile("STACK/images/stackAcollapsed.png", game:HttpGet("https://raw.githubusercontent.com/decryp1/STACK/main/images/stackAcollapsed.png"));
+    end
+end
+
 
 function utils.getobsidian()
 	local icon, iconholder
@@ -52,16 +70,12 @@ end
 
 function utils.invitetodiscord()
 	if readfile("STACK/globals/invited.txt") == ("false" or nil) then
-		if not request then
-			print("ur executor is terrible, check your clipboard for the discord")
-			setclipboard("https://discord.gg/js4xbKc3t")
-			return
-		end
-		request({
+		setclipboard("https://discord.gg/js4xbKc3t")
+		--[[request({
 			Url = "http://127.0.0.1:6463/rpc?v=1", Method = "POST",
 			Headers = {["Content-Type"] = "application/json", ["Origin"] = "https://discord.com"},
 			Body = game:GetService("HttpService"):JSONEncode({cmd = "INVITE_BROWSER", args = {code = "js4xbKc3t"}, nonce = game:GetService("HttpService"):GenerateGUID(false)})
-		})
+		})]]
 		writefile("STACK/globals/invited.txt", "true")
 	end
 end
